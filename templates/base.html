@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+<title>NextDoor</title>
+ <link rel = "icon" href =
+"{% static 'home/images/icon1.jpeg' %}"
+        type = "image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet" type="text/css" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script type="text/javascript" src="{% static 'home/js/jquery-1.3.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'home/js/script.js' %}"></script>
+<script type="text/javascript" src="{% static 'home/js/cufon-yui.js' %}"></script>
+<script type="text/javascript" src="{% static 'home/js/arial.js' %}"></script>
+<script type="text/javascript" src="{% static 'home/js/cuf_run.js' %}"></script>
+</head>
+<body>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  .menu_nav ul li a {
+    display: block;
+    margin: 0;
+    padding: 10px 22px;
+    color: #878989;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 16px;
+}
+.search {
+float: left;
+    width: 226px;
+    padding: 39px 0;
+}
+.search input#s {
+    float: left;
+    width: 185px;
+    padding: 0px 6px 3px 3px;
+    margin: 0;
+    border: 0;
+    background: none;
+    color: #afaeae;
+    font: normal 12px/15px Arial, Helvetica, sans-serif;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.notification {
+
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification:hover {
+  background: red;
+}
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+.search span {
+    width: 233px;
+    display: block;
+    background: #FFF;
+    height: 33px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #e1dddd;
+}
+
+
+.logo {
+    float: left;
+    width: 281px;
+    height: 73px;
+    padding: 0px 0px;
+    margin: 5px 66px 7px -11px;
+}
+
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  letter-spacing: 2px
+}
+
+.login-box a:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+.login-box a span {
+  position: absolute;
+  display: block;
+}
+
+.login-box a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 10s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 10s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.login-box a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 10s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.login-box a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 10s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+</style>
+<style>
+.sidenav {
+  height: 60%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background:linear-gradient(rgb(0 243 255 /100%),rgb(0 159 242 /100%));
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 150px;
+  border-radius: 4px 48px 41px 2px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 200px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+<div class="main">
+  <div class="main_resize">
+    <div class="header">
+      <div class="logo">
+          <a href="{% url 'home' %}"><img class="logo" src="{% static 'home/images/nxlogo.png' %}" alt="Italian Trulli"></a>
+        <!--<h1><a href="{% url 'home' %}"><span>Next</span>DooR<small>A better neighborhood</small></a></h1>-->
+
+      </div>
+            <div class="menu_nav" >
+        <ul style="margin: 15px -24px -5px;">
+          {% if user.is_authenticated %}
+           <li><p><a href="{% url 'logout' %}">Log Out <i class="fa fa-sign-out"></i></a></p> </li>
+          <li><p><a href="/Account/user_profile/{{user.username}}/">Welcome {{ user.username }}<i class="fa fa-user fa-fw"></i></a></p> </li>
+          <li><p> <a href="/Account/user_profile/{{user.username}}/inbox" class="notification">
+          <span> Inbox</span>
+            {% if mes > 0 %}
+          <span class="badge">{{mes}}</span>
+            {% endif %}
+
+          </a></p> </li>
+          {% else %}
+            <li class="" ><a  href="/Account/login">Login <i class="fa fa-sign-in"></i></a></li>
+            <li class="" ><a  href="/Account/signup">Sign Up <i class="fa fa-registered"></i></a></li>
+          {% endif %}
+          </ul>
+                </div>
+      <div class="search">
+        <form method="post" id="search" action="{% url 'search' %}">
+          {% csrf_token %}
+          <span>
+          <input type="text" placeholder="Search..." name="s" id="s" />
+          <input name="searchsubmit" type="image" src="{% static 'home/images/search.gif' %}" value="Go" id="searchsubmit" class="btn"  />
+          </span>
+        </form>
+        <!--/searchform -->
+        <div class="clr"></div>
+      </div>
+      <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'home' %}">
+
+    Home <i class="fa fa-home"></i></a>
+    <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'AbutUs' %}">
+      about us
+    <i class="fa fa-users"></i></a>
+    {% if user.is_authenticated %}
+        <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'map' %}">
+      Map
+     <i class="fa fa-map-o"></i></a></a>
+    {% endif %}
+     {% for group in  request.user.groups.all %}
+        {%  if 'support' == group.name %}
+            <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'support_ticket' %}">
+              Support
+            <i class="fa fa-life-ring"></i></a>
+            <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'Open_support_tickets' %}">
+              Open Tickets
+            <i class="fa fa-ticket"></i></a>
+                  <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'request_to_delete' %}">
+              Request
+            <i class="fa fa-book"></i></a>
+                        <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'support_view' %}">
+              Check Forwarded Status
+            <i class="fa fa-hourglass-half"></i></a>
+            {% endif %}
+         {% endfor %}
+     {% if user.is_superuser %}
+              <a style="    color: #ffffff;
+    font-weight: bold;" href="/admin">
+              Admin
+            <i class="fa fa-cog"></i></a>
+            <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'Banned_list' %}">
+              Banned List
+            <i class="fa fa-user-times"></i></a>
+                  <a style="    color: #ffffff;
+    font-weight: bold;" href="https://api.elephantsql.com/console/227b2884-1c10-4a7e-913a-ba05852641f1/backup">
+              Backup DB
+            <i class="fa fa-download"></i></a>
+                <a style="    color: #ffffff;
+    font-weight: bold;" href="{% url 'user_count' %}">
+              Query User Amount
+            <i class="fa fa-download"></i></a>
+
+     {% endif %}
+</div>
+        <span style="font-size:30px;cursor:pointer;left: 0;
+    position: absolute;" onclick="openNav()">&#9776; menu</span>
+        <script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+      <div class="hbg"><img src="{% static 'home/images/header_images.jpg' %}" width="923" height="291" alt="" style="margin: 0px 0px 0px -16px;" /></div>
+    </div>
+    {% block content %}
+    {% endblock %}

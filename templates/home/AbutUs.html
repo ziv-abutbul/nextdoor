@@ -1,0 +1,157 @@
+<!doctype html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+
+/* Parsonal */
+.Parsonal {
+    background: #f8f8f8;
+}
+.Parsonal .img {
+    background: #fff;
+    margin-top: 30px;
+    text-align: center;
+    height: 257px;
+    transform: rotateX(200dge);
+    transition: 0.5s;
+}
+.Parsonal .img img {
+    transform: rotate(0deg);
+    transition: 0.7s;
+}
+.Parsonal .img h3 {
+    font-size: 16px;
+    padding: 12px;
+    font-weight: 900;
+}
+.Parsonal .img p {
+    margin-bottom: 29px;
+}
+.Parsonal .img a {
+    background: black;
+    padding: 7px 23px;
+    text-decoration: none;
+    font-size: 22px;
+    color: white;
+    border-radius: 11px;
+}
+.Parsonal .img:hover {
+    background-color: #d9f1f3;
+}
+.Parsonal .img:hover img {
+    transform: rotateX(200dge);
+}
+/* About */
+.About {
+}
+.About h1 {
+    font-size: 46px;
+    margin-left: 1px;
+}
+.About h1 span {
+    color: #c69453;
+}
+.About h3 {
+    font-size: 20px;
+    margin: 22px;
+}
+.About a {
+    text-decoration: none;
+    background: blue;
+    padding: 10px;
+    margin-left: 33px;
+    color: white;
+}
+
+.email {
+    background-image: url(https://i.ibb.co/6w3c7zn/ia-200000022.jpg);
+    background-size: cover;
+    background: center;
+    padding: 200px 0;
+}
+.email h1 {
+    text-align: center;
+    margin: 20px;
+    font-weight: 600;
+}
+.email p {
+    word-spacing: 5px;
+}
+.last {
+    background-color: black;
+}
+.last h3 {
+    color: white;
+    font-size: 10px;
+}
+.last ul {
+    text-align: right;
+}
+.last ul li {
+    display: inline-block;
+    margin-left: 77px;
+}
+.last ul li a {
+    color: white;
+}
+
+</style>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+      <div class="Parsonal pb-1">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-3">
+                      <div class="img">
+                          <img src="{% static 'home/images/ziv.jpg' %}" style="border-radius: 266px;
+    height: 132px;" alt="">
+                          <h3>Ziv Abutbul</h3>
+                          <a href="https://www.linkedin.com/in/ziv-abutbul-51494b222/">Linkedin</a>
+                      </div>
+                  </div>
+                  <div class="col-lg-3">
+                      <div class="img">
+                          <img src="{% static 'home/images/shlomo.jpg' %}" style="border-radius: 266px;
+    height: 132px;" alt="">
+                          <h3>Shlomo Shnur</h3>
+                          <a href="https://www.linkedin.com/in/shlomo-shnur-70b515226/">Linkedin</a>
+                      </div>
+                  </div>
+                  <div class="col-lg-3">
+                      <div class="img">
+                          <img src="{% static 'home/images/lev.jpg' %}" style="border-radius: 266px;
+    height: 132px;" alt="">
+                          <h3>Lev Alhazov </h3>
+                          <a href="https://www.linkedin.com/in/lev-alhazov-765b3a180/">Linkedin</a>
+                      </div>
+                  </div>
+                  <div class="col-lg-3">
+                      <div class="img">
+                          <img src="{% static 'home/images/gal.jpg' %}" style="border-radius: 266px;
+    height: 132px;" alt="">
+                          <h3>Gal Arzi </h3>
+                          <a href="https://www.linkedin.com/in/gal-arzi/">Linkedin</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      </div>
+  </div>
+  </body>
+</html>
+{% endblock content %}

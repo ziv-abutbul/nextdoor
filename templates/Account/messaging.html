@@ -1,0 +1,514 @@
+<! DOCTYPE html>
+<!-- Path: templates/Account/messaging.html -->
+
+{% load static %}
+<!-- Implement messaging.html from MessageForm -->
+{% block content %}
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+<style>.menu_nav ul li {
+    margin: 0;
+    padding: 4px 5px 15px 0;
+    float: left;
+    background: url(images/menu_line.jpg) repeat-x top;
+    }
+    .button-15 {
+  background-image: linear-gradient(#42A1EC, #0070C9);
+  border: 1px solid #0077CC;
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  direction: ltr;
+  display: block;
+  font-family: "SF Pro Text","SF Pro Icons","AOS Icons","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: -.022em;
+  line-height: 1.47059;
+  min-width: 30px;
+  overflow: visible;
+  padding: 4px 15px;
+  text-align: center;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.button-15:disabled {
+  cursor: default;
+  opacity: .3;
+}
+
+.button-15:hover {
+  background-image: linear-gradient(#51A9EE, #147BCD);
+  border-color: #1482D0;
+  text-decoration: none;
+}
+
+.button-15:active {
+  background-image: linear-gradient(#3D94D9, #0067B9);
+  border-color: #006DBC;
+  outline: none;
+}
+
+.button-15:focus {
+  box-shadow: rgba(131, 192, 253, 0.5) 0 0 0 3px;
+  outline: none;
+}
+body {
+  margin: 0;
+}
+
+.sb-title {
+  position: relative;
+  top: -12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
+
+.sb-title-icon {
+  position: relative;
+  top: -5px;
+}
+
+.card-container {
+  display: flex;
+  height: 500px;
+  width: 600px;
+}
+
+.panel {
+  background: white;
+  width: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.half-input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.half-input {
+  max-width: 120px;
+}
+
+.map {
+  width: 300px;
+}
+
+h2 {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+input {
+  height: 30px;
+}
+
+input {
+  border: 0;
+  border-bottom: 1px solid black;
+  font-size: 14px;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+input:focus::placeholder {
+  color: white;
+}
+
+.button-cta {
+  height: 40px;
+  width: 40%;
+  background: #3367d6;
+  color: white;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-family: Roboto, sans-serif;
+  border: 0;
+  border-radius: 3px;
+
+
+}
+textarea {
+    overflow: auto;
+        margin: 68px 52px 22px -397px;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 10px;
+    font-weight: 700;
+        padding: 0px 65px;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 29px 10px 3px 256px;
+    width: 80%;
+}
+p {
+    margin: 8px 13px -11px -40px;
+    padding: 81px 25px;
+}
+    form.chat *{
+  transition:all .5s;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+}
+
+form.chat {
+  margin:0;
+  cursor:default;
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;
+}
+
+form.chat span.spinner{
+  -moz-animation: loading-bar 2s 1;
+  -webkit-animation: loading-bar 2s 1;
+  animation: loading-bar 2s 1;
+  display: block;
+  height: 2px;
+  background-color: #00e34d;
+  transition: width 0.2s;
+  position:absolute;
+  top:0; left:0; right:0;
+  z-index:4
+}
+
+form.chat .messages{
+  display:block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position:relative;
+  height:90%;
+  width:100%;
+  padding:2% 3%;
+  border-bottom:1px solid #ecf0f1;
+}
+
+form.chat ::-webkit-scrollbar {width: 3px; height:1px;transition:all .5s;z-index:10;}
+form.chat ::-webkit-scrollbar-track {background-color: white;}
+form.chat ::-webkit-scrollbar-thumb {
+  background-color: #bec4c8;
+  border-radius:3px;
+}
+
+form.chat .message{
+  display:block;
+  width:98%;
+  padding:0.5%;
+}
+
+form.chat .message p{
+  margin:0;
+}
+
+form.chat .myMessage,
+form.chat .fromThem {
+  max-width: 50%;
+  word-wrap: break-word;
+  margin-bottom: 20px;
+}
+
+form.chat .message:hover .myMessage{
+  -webkit-transform: translateX(-130px);
+  transform: translateX(-130px);
+}
+
+form.chat .message:hover .fromThem{
+  -webkit-transform: translateX(130px);
+  transform: translateX(130px);
+}
+
+form.chat .message:hover date {
+  opacity: 1;
+}
+
+form.chat .myMessage,.fromThem{
+  position: relative;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 25px;
+  clear: both;
+  font: 400 15px 'Open Sans', sans-serif;
+}
+
+form.chat .myMessage {
+  background: #00e34d;
+  color:white;
+  float:right;
+  clear:both;
+  border-bottom-right-radius: 20px 0px\9;
+}
+
+form.chat .myMessage:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -2px;
+  right: -8px;
+  height: 19px;
+  border-right: 20px solid #00e34d;
+  border-bottom-left-radius: 16px 14px;
+  -webkit-transform: translate(0, -2px);
+  transform: translate(0, -2px);
+  border-bottom-left-radius: 15px 0px\9;
+  transform: translate(-1px, -2px)\9;
+}
+
+form.chat .myMessage:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: -2px;
+  right: -42px;
+  width: 12px;
+  height: 20px;
+  background: white;
+  border-bottom-left-radius: 10px;
+  -webkit-transform: translate(-30px, -2px);
+  transform: translate(-30px, -2px);
+}
+
+form.chat .fromThem {
+  background: #E5E5EA;
+  color: black;
+  float: left;
+  clear:both;
+  border-bottom-left-radius: 30px 0px\9;
+}
+form.chat .fromThem:before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  bottom: -2px;
+  left: -7px;
+  height: 19px;
+  border-left: 20px solid #E5E5EA;
+  border-bottom-right-radius: 16px 14px;
+  -webkit-transform: translate(0, -2px);
+  transform: translate(0, -2px);
+  border-bottom-right-radius: 15px 0px\9;
+  transform: translate(-1px, -2px)\9;
+}
+
+form.chat .fromThem:after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  bottom: -2px;
+  left: 4px;
+  width: 26px;
+  height: 20px;
+  background: white;
+  border-bottom-right-radius: 10px;
+  -webkit-transform: translate(-30px, -2px);
+  transform: translate(-30px, -2px);
+}
+
+form.chat date {
+  position:absolute;
+  top: 10px;
+  font-size:14px;
+  white-space:nowrap;
+  vertical-align:middle;
+  color: #8b8b90;
+  opacity: 0;
+  z-index:4;
+}
+
+form.chat .myMessage date {
+  left: 105%;
+}
+
+form.chat .fromThem date {
+  right: 105%;
+}
+
+form.chat input{
+  font: 400 13px 'Open Sans', sans-serif;
+  border:0;
+  padding:0 15px;
+  height:10%;
+  outline:0;
+}
+
+form.chat input[type='text']{
+  width:73%;
+  float:left;
+}
+
+form.chat input[type='submit']{
+  width:23%;
+  background:transparent;
+  color:#00E34D;
+  font-weight:700;
+  text-align:right;
+  float:right;
+}
+
+  form.chat .myMessage,form.chat .fromThem{
+    font-size:12px;
+  }
+
+  form.chat .message:hover .myMessage{
+    transform: translateY(18px);
+    -webkit-transform: translateY(18px);
+  }
+
+  form.chat .message:hover .fromThem{
+    transform: translateY(18px);
+    -webkit-transform: translateY(18px);
+  }
+
+  form.chat .myMessage date,form.chat .fromThem date {
+    top: -20px;
+    left:auto;
+    right:0;
+    font-size:12px;
+  }
+
+  form.chat .myMessage,
+  form.chat .fromThem {
+    max-width: 90%;
+  }
+
+@-moz-keyframes loading-bar {
+  0% {
+    width: 0%;
+  }
+  90% {
+    width: 90%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes loading-bar {
+  0% {
+    width: 0%;
+  }
+  90% {
+    width: 90%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    width: 0%;
+  }
+  90% {
+    width: 90%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* DEMO */
+.iphone{
+  width:300px;
+  height:609px;
+  background-image:url('http://www.adobewordpress.com/tasarim/images/iphone6.png');
+  background-size:100% 100%;
+  margin:0 auto;
+  position:relative;
+}
+
+.border{
+	position:absolute;
+	top:12.3%;right:7%;left:7%;bottom:12%;
+	overflow:hidden;
+}
+
+a.article{
+  position:fixed;
+  bottom:15px;left:15px;
+  display:table;
+  text-decoration:none;
+  color:white;
+  background-color:#00e34d;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font: 400 15px 'Open Sans', sans-serif;
+}</style>
+<body>
+<h1 style="block-size: auto;
+    writing-mode: horizontal-tb;
+    padding: 8px 265px;">chat with: {{get_receiver.username}}</h1>
+
+  <div class="border">
+    <form class="chat" method="post" actoin="MessageForm">
+        {% csrf_token %}
+      <span></span>
+      <div class="messages" id="adobewordpress">
+         {% for r in History %}
+          {% if r.sender.username == get_user.username %}
+        <div class="message">
+          <div class="myMessage">
+            <p>{{ r.message }}</p>
+            <date><b>{{r.sender.username}}</b> {{ r.created_at }}</date>
+          </div>
+        </div>
+        {% else %}
+         <div class="message">
+          <div class="fromThem">
+            <p>{{ r.message }}</p>
+            <date><b></b> {{ r.created_at }}{{r.receiver.username}}</date>
+          </div>
+        </div>
+          {% endif %}
+       {% endfor %}
+      </div>
+       <input type="text" placeholder="Your message" name="message">
+      <input type="submit" value="Send">
+    </form>
+  </div>
+</div>
+
+<form method="post">
+        {% csrf_token %}
+    <div style="margin: 98px 15px 10px 30px;">
+        </div>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+           <div style="padding: 1px 242px;">
+
+               </div>
+        </form>
+</body>
+{% endblock %}

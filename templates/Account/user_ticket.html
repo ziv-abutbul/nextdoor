@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Create user Ticket{% endblock title %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div class="te" style="padding: 22px;">
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+          <input type="submit" name="submit" id="submit">
+    </div>
+        </form>
+
+      </div>
+</head>
+<body>
+
+</body>
+</html>
+{% endblock %}

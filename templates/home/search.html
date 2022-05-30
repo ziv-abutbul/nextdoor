@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script>
+function show(shown, hidden) {
+  document.getElementById(shown).style.display='block';
+  document.getElementById(hidden).style.display='none';
+  return false;
+}
+</script>
+<style>
+    .row {
+  white-space: nowrap;
+}
+
+.row > div {
+  width: 300px;
+  display: inline-block;
+}
+.bob div {
+  display: flex;
+  justify-content: space-between;
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+  text-align: center;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-align: center;
+}
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align: center;
+}
+.story {
+	background:white;
+	padding:10px 5px;
+}
+.story .story-item {
+	height: 160px;
+    border-radius: 15px;
+    background: #3e7fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: white;
+	position:relative;
+	font-size:13px;
+}
+.story .story-item:before {
+   content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: .2;
+    border-radius: 15px;
+  }
+.story .story-item span {
+	position:absolute;bottom:0;
+	padding:10px 5px;
+  font-family: sans-serif;
+}
+.story .owl-stage {
+    right: 15px;
+}
+
+
+
+</style>
+<div style="display: inline-flex;">
+{% for l in list %}
+
+    <table>
+        <div class="bob">
+            <div >
+        <tr>
+            <th>
+</div>
+                 {% for p in profile %}
+                  {% if p.user.username == l.username %}
+
+            <div class="story owl-carousel owl-theme">
+                  <div class="story-item item" style="background-image:url({{p.image.url}});"><div class="rounded"></div>
+                      <span>{{p.first_name}} {{p.last_name}} </span>
+                  </div>
+                <p class="post-data">City: {{p.city}}</p>
+                 <div class="menu_nav" >
+                     <ul style="margin: -44px 23px;">
+                <li><p><a href="/Account/user_profile/{{ l.username }}">Link Profile</a></p> </li>
+                </ul>
+                 </div>
+            </th></tr>
+        <tr>
+         <td>
+                  {% endif %}
+                  {% endfor %}
+        </td></tr>
+                <div>
+                </div>
+        </table>
+{% endfor %}
+</div>
+<div class="footer">
+  <div class="footer_resize">
+    <p class="lf">Copyright &copy; <a href="#">Ziv&lev&shlomo&gal</a>. All Rights Reserved</p>
+    <div class="clr"></div>
+  </div>
+</div>
+</body>
+</html>
+{% endblock content %}

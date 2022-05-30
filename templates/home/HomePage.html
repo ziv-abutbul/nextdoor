@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script>
+function show(shown, hidden) {
+  document.getElementById(shown).style.display='block';
+  document.getElementById(hidden).style.display='none';
+  return false;
+}
+</script>
+<style>
+    .row {
+  white-space: nowrap;
+}
+
+.row > div {
+  width: 300px;
+  display: inline-block;
+}
+.bob div {
+  display: flex;
+  justify-content: space-between;
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+  text-align: center;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  text-align: center;
+}
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align: center;
+}
+.story {
+	background:white;
+	padding:10px 5px;
+}
+.story .story-item {
+	height: 160px;
+    border-radius: 15px;
+    background: #3e7fff;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: white;
+	position:relative;
+	font-size:13px;
+}
+.story .story-item:before {
+   content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    opacity: .2;
+    border-radius: 15px;
+  }
+.story .story-item span {
+	position:absolute;bottom:0;
+	padding:10px 5px;
+  font-family: sans-serif;
+}
+.story .owl-stage {
+    right: 15px;
+}
+
+
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  letter-spacing: 2px
+}
+
+.login-box a:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+.login-box a span {
+  position: absolute;
+  display: block;
+}
+
+.login-box a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 10s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 10s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.login-box a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 10s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.login-box a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 10s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+</style>
+<div style="display: inline-flex;">
+{% for contact in page_obj %}
+
+    <table>
+        <div class="bob">
+            <div >
+        <tr>
+            <th>
+</div>
+                 {% for p in profile %}
+                  {% if p.user.username == contact.username %}
+
+            <div class="story owl-carousel owl-theme">
+                  <div class="story-item item" style="background-image:url({{p.image.url}});"><div class="rounded"></div>
+                      <span>{{p.first_name}} {{p.last_name}} </span>
+                  </div>
+                <p class="post-data">City: {{p.city}}</p>
+              <div class="login-box">
+              <form>
+                <a href="/Account/user_profile/{{ contact.username }}" style="font-size: 12px;">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  Link Profile
+                </a>
+              </form>
+            </div>
+            </th></tr>
+        <tr>
+         <td>
+                  {% endif %}
+                  {% endfor %}
+        </td></tr>
+                <div>
+                </div>
+        </table>
+{% endfor %}
+</div>
+<div class="pagination" style="text-align: center;padding: 0px 310px;">
+    <span class="step-links">
+
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<div class="footer">
+  <div class="footer_resize">
+    <p class="lf"><a href="{% url 'RemoveBan' %}">Click here for open request to Bug report or remove ban </a></p>
+</div>
+<div class="footer">
+  <div class="footer_resize">
+    <p class="lf">Copyright &copy; <a href="#">Ziv&lev&shlomo&gal</a>. All Rights Reserved</p>
+    <div class="clr"></div>
+  </div>
+</div>
+</body>
+</html>
+{% endblock content %}
